@@ -58,3 +58,6 @@
 
    ![image-20210114234447390](assets/my_joined_funding_detail_2.jpg)
 
+### 网站视频演示
+
+https://www.bilibili.com/video/BV1gz4y1S7ny
