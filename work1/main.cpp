@@ -31,7 +31,7 @@ int main() {
     string data_String;
     char c;
     int numberOfZero=0;
-    cout <<" Enter 1 to execute SHA256 algorithm for single string, and enter P to execute ProofOfWork.\n Enter Q to quit." << endl;
+    cout <<"Enter 1 to execute SHA256 algorithm for single string, and enter P to execute ProofOfWork.\nEnter Q to quit." << endl;
     c = cin.get();
     cin.get();
     while(c!='Q'){
@@ -44,16 +44,17 @@ int main() {
             cout << "Please enter a string, and then give a number of 0. The process will give out the additionnal number(which is sequential from 1 to 2^64)." << endl;
             cout << "Please enter a single string, with 'Enter' in the end." << endl;
             getline(cin,data_String);
-            cout << "Please enter the number of 0:" ;
+            cout << "Please enter the number of 0 (no more than 32):" ;
             cin >> numberOfZero;
             cin.get();
+            if(numberOfZero>32) {cout << "Error! The number should be no more than 32."<< endl; break;}
             ProofOfWork(data_String,numberOfZero);
 
         }
         else {
             cout << "Wrong input! Please try again." << endl;
         }
-        cout <<" Enter 1 to execute SHA256 algorithm for single string, and enter P to execute ProofOfWork.\n Enter Q to quit." << endl;
+        cout <<"Enter 1 to execute SHA256 algorithm for single string, and enter P to execute ProofOfWork.\nEnter Q to quit." << endl;
         cin >> c;
         cin.get();
     }
