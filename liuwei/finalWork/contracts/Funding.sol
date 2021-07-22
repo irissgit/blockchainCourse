@@ -118,4 +118,40 @@ contract Funding{
     function getBalance() public view returns (uint) {
         return address(this).balance;
     }
+    //make sure the funder is in this funding
+    modifier funderOfFunding(uint _fundId){
+        require(_fundId>=0 && _fundId<=allFundingsLength);
+        Funding storage funding = allFundings[_fundId];
+        bool isIn = false;
+        for(uint i = 1; i<=funding.fundersLength;i++){
+            Funder memory funder = funding.funders[i];
+            if(funder.add==msg.sender)
+            isIn = true;
+        }
+        require(isIn == true);
+        _;
+    }
+    
+    function getMyFundings(uint _fundId) public view returns(uint){
+        uint money=0;
+        Funding storage funding = allFundings[_fundId];
+        for(uint j=1;j<=funding.fundersLength;j++){
+            Funder memory funder = funding.funders[j];
+            if(funder.add==msg.sender)
+            money+=funder.cost;
+        }
+        return money;
+    }
+    
+    function getMyInitFundings(uint _fundId) public view returns(bool){
+        return (allFundings[_fundId].initiator == msg.sender ? true:false);
+    }
+    
+    function getProposalsLength(uint _fundId) public view returns(uint){
+        return allFundings[_fundId].proposalsLength;
+    }
+    
+    function getBalance() public view returns (uint) {
+        return address(this).balance;
+    }
 }
